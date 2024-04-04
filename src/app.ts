@@ -25,17 +25,22 @@ app.get("/users/:id", async(req, res)=> {
 })
 
 app.post("/users", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-
-  const newUser = await prisma.user.create({
-    data: {
-      name,
-      email,
-    },
-  });
-
-  res.status(201).send(`Usuário ${newUser.name} criado com sucesso !!`);
+  try {
+    const name = req.body.name;
+    const email = req.body.email;
+  
+    const newUser = await prisma.user.create({
+      data: {
+        name,
+        email,
+      },
+    });
+  
+    res.status(201).send(`Usuário ${newUser.name} criado com sucesso !!`);
+  } catch(e) {
+    res.status(501).send(e)
+  }
+ 
 });
 
 app.put("/users/:id", async (req, res) => {
