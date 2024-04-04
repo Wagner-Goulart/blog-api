@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import cors from "cors"
 
 const app = express();
 const port = process.env.PORT || 3000;
 const prisma = new PrismaClient();
 
+app.use(cors())
 app.use(express.json());
 
 app.get("/", async (req, res) => {
@@ -76,3 +78,5 @@ app.delete("/users/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
