@@ -38,7 +38,7 @@ app.post("/users", async (req, res) => {
       },
     });
   
-    res.status(201).send(`Usuário ${newUser.name} criado com sucesso !!`);
+    res.status(201).json(`Usuário ${newUser.name} criado com sucesso !!`);
   } catch(e) {
     res.status(501).send(e)
   }
